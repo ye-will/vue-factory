@@ -2,11 +2,17 @@
   "name": "vue-factory",
   "version": "0.0.1",
   "description": "A factory/provider/service extension for vue.js",
-  "main": "dist/index.js",
+  "main": "vue-factory.js",
   "repository": {
     "url": "https://github.com/ye-will/vue-factory.git",
     "type": "git"
   },
   "author": "Yewei <yewei@nibirutech.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "uglify-js": "^2.7.4"
+  },
+  "scripts": {
+    "build": "uglifyjs vue-factory.js -c -m -o vue-factory.min.js"
+  }
 }
