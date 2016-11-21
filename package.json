@@ -7,12 +7,15 @@
     "url": "https://github.com/ye-will/vue-factory.git",
     "type": "git"
   },
-  "author": "Yewei <yewei@nibirutech.com>",
+  "author": "Yewei <yeah_well@live.com>",
   "license": "MIT",
   "devDependencies": {
-    "uglify-js": "^2.7.4"
+    "uglify-js": "^2.7.4",
+    "vue": "^2.0.8",
+    "webpack": "^1.13.3"
   },
   "scripts": {
-    "build": "uglifyjs vue-factory.js -c -m -o vue-factory.min.js"
+    "build": "webpack example/example.js example/example.build.js && uglifyjs vue-factory.js -c -m -o vue-factory.min.js",
+    "dev": "webpack --watch example/example.js example/example.build.js"
   }
 }

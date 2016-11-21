@@ -3,29 +3,45 @@
 
   var plugin = {}
   plugin.$providers = {}
+
+  var Configuration = function (Vue) {
+    this.$Vue = Vue
+  }
+  Configuration.prototype.register = (function (){
+    var vm = this
+    return function (opts) {
+      // ensure all of factory objects are Singletons
+      // bind Vue root as $Vue to factory objects
+      for (var key in opts) {
+        var Provider = opts[key]
+        if (typeof Provider === 'function') {
+          Object.defineProperties(Provider.prototype, {
+            $Vue: {
+              get: function () {
+                return vm.$Vue
+              }
+            }
+          })
+          plugin.$providers[key] = new Provider()
+        } else {
+          Provider.$Vue = vm.$Vue
+          plugin.$providers[key] = Provider
+        }
+      }
+    }
+  })()
+
+
   plugin.install = function (Vue, opts) {
     // check if vue-factory has already installed
     if (plugin.installed) {
       return
     }
-    // ensure all of factory objects are Singletons
-    // bind Vue root as $Vue to factory objects
-    for (var key in opts) {
-      var Provider = opts[key]
-      if (typeof Provider === 'function') {
-        Object.defineProperties(Provider.prototype, {
-          $Vue: {
-            get: function () {
-              return Vue
-            }
-          }
-        })
-        plugin.$providers[key] = new Provider()
-      } else {
-        Provider.$Vue = Vue
-        plugin.$providers[key] = Provider
-      }
+    Vue.factory = new Configuration(Vue)
+    if (typeof opts !== 'undefined') {
+      Vue.factory.register(opts)
     }
+
     // inject factory objects to vue components when they have been created
     Vue.mixin({
       created: function () {
