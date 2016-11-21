@@ -29,19 +29,23 @@ Or with Webpack/Browserify projects, add these lines in your main.js
 
 1. write a factory Class/function:
 
-    // ES2015 Style Class
-    class FactoryExample {
-      constructor () {
-        this.private = 'private'
-      }
-      echo (something) {
-        console.log(something)
-      }
-      get prop () {
-        return 'get: ' + this.value
-      }
-      set prop (value) {
-        this.value = value
-      }
+```
+class FactoryExample {
+  constructor () {
+    this.private = 'private'
+  }
+  echo (something) {
+    console.log(something)
+  }
+  get prop () {
+    return 'get: ' + this.value
+  }
+  set prop (value) {
+    this.value = value
+  }
+}
+```
 
 2. setup VueFactory
+
+*TODO*: to be finished
