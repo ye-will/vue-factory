@@ -7,29 +7,27 @@
   var Configuration = function (Vue) {
     this.$Vue = Vue
   }
-  Configuration.prototype.register = (function (){
+  Configuration.prototype.register = function (opts) {
     var vm = this
-    return function (opts) {
-      // ensure all of factory objects are Singletons
-      // bind Vue root as $Vue to factory objects
-      for (var key in opts) {
-        var Provider = opts[key]
-        if (typeof Provider === 'function') {
-          Object.defineProperties(Provider.prototype, {
-            $Vue: {
-              get: function () {
-                return vm.$Vue
-              }
+    // ensure all of factory objects are Singletons
+    // bind Vue root as $Vue to factory objects
+    for (var key in opts) {
+      var Provider = opts[key]
+      if (typeof Provider === 'function') {
+        Object.defineProperties(Provider.prototype, {
+          $Vue: {
+            get: function () {
+              return vm.$Vue
             }
-          })
-          plugin.$providers[key] = new Provider()
-        } else {
-          Provider.$Vue = vm.$Vue
-          plugin.$providers[key] = Provider
-        }
+          }
+        })
+        plugin.$providers[key] = new Provider()
+      } else {
+        Provider.$Vue = vm.$Vue
+        plugin.$providers[key] = Provider
       }
     }
-  })()
+  }
 
 
   plugin.install = function (Vue, opts) {
