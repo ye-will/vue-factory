@@ -79,7 +79,7 @@ Or with Webpack/Browserify projects, add these lines in your main.js
     this.example.prop // get: changed
     ```
 
-    note that all of the providers are **Singletons**, if you inject the *example* provider other components later, *this.example.prop* will get **changed** value.
+    note that all of the providers are **Singletons**, if you inject the *example* provider into other components later, *this.example.prop* will get **changed** value.
 
 ## Demo
 
