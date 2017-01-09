@@ -27,59 +27,59 @@ Or with Webpack/Browserify projects, add these lines in your main.js
 
 ## Useage
 
-1. write a factory Class/function:
+1.  write a factory Class/function:
 
-```
-class FactoryExample {
-  constructor () {
-    this.const = 'not editable'
-  }
-  echo (something) {
-    console.log(something)
-  }
-  get prop () {
-    return 'get: ' + this.value
-  }
-  set prop (value) {
-    this.value = value
-  }
-}
-```
+    ```
+    class FactoryExample {
+      constructor () {
+        this.const = 'not editable'
+      }
+      echo (something) {
+        console.log(something)
+      }
+      get prop () {
+        return 'get: ' + this.value
+      }
+      set prop (value) {
+        this.value = value
+      }
+    }
+    ```
 
-2. register the factory Class:
+2.  register the factory Class:
 
-```
-Vue.factory.register({
-  'example': FactoryExample
-})
-```
+    ```
+    Vue.factory.register({
+      'example': FactoryExample
+    })
+    ```
 
-3. declare providers that will be injected in the Vue component:
+3.  declare providers that will be injected in the Vue component:
 
-as in a .vue file
+    as in a .vue file
 
-```
-<script>
-...
-export default {
-   ...
-   providers: ['example'],
-   ...
-}
-...
-</script>
-```
+    ```
+    <script>
+    ...
+    export default {
+       ...
+       providers: ['example'],
+       ...
+    }
+    ...
+    </script>
+    ```
 
-4. then, you can access the provider in the component using:
+4.  then, you can access the provider in the component using:
 
-```
-this.example.echo("ok") // "ok"
-this.example.prop // get: undefined
-this.example.prop = "changed"
-this.example.prop // get: changed
-```
+    ```
+    this.example.echo("ok") // "ok"
+    this.example.prop // get: undefined
+    this.example.prop = "changed"
+    this.example.prop // get: changed
+    ```
 
-note that all of the providers are **Singletons**, if you inject the *example* provider other components later, *this.example.prop* will get **changed** value.
+    note that all of the providers are **Singletons**, if you inject the *example* provider other components later, *this.example.prop* will get **changed** value.
 
 ## Demo
 
