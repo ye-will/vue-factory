@@ -2,8 +2,7 @@ var Vue = require('vue')
 var VueFactory = require('../')
 
 var FactoryExample = function () {
-  this.private = 'private',
-  this.value = 'init'
+  this.value = 'init value'
 }
 FactoryExample.prototype.echo = function (something) {
   window.alert(something)
@@ -20,19 +19,19 @@ Object.defineProperties(FactoryExample.prototype, {
 })
 
 // use the plugin
-Vue.use(VueFactory, {
-  'example': FactoryExample
-})
-
-// Vue.use(VueFactory)
-// Vue.factory.register({
+// Vue.use(VueFactory, {
 //   'example': FactoryExample
 // })
 
+Vue.use(VueFactory)
+Vue.factory.register({
+  'example': FactoryExample
+})
+
 var template = `
 <div>
-  <div v-for="(prop, index) in props">index: {{prop}}</div>
-  <button @click="echo">click me</button>
+  <div v-for="(prop, index) in props">{{index}}: {{prop}}</div>
+  <button @click="echo">echo</button>
 </div>
 `
 
@@ -41,7 +40,7 @@ new Vue({
   providers: ['example'],
   template: template,
   data: {
-    props: []
+    props: [],
   },
   methods: {
     echo: function () {
@@ -52,5 +51,12 @@ new Vue({
     this.props.push(this.example.prop)
     this.example.prop = 'vue factory works'
     this.props.push(this.example.prop)
+    this.props.push(this.example.value)
+    try {
+      this.example.value = 'try set private'
+    }
+    catch (err) {
+      this.props.push(err.message)
+    }
   }
 })

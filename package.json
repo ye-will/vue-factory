@@ -1,6 +1,6 @@
 {
   "name": "vue-factory",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A factory/provider/service extension for vue.js",
   "main": "vue-factory.js",
   "repository": {

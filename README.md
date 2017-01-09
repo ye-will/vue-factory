@@ -4,7 +4,7 @@ A factory/provider/service extension for vue.js
 
 ## Requirements
 
-*  Vue 2.0
+*  Vue 2.x
 *  Vue 1.x not tested
 *  Proxy/Reflect compatible browser for full features
 
@@ -32,7 +32,7 @@ Or with Webpack/Browserify projects, add these lines in your main.js
 ```
 class FactoryExample {
   constructor () {
-    this.private = 'private'
+    this.const = 'not editable'
   }
   echo (something) {
     console.log(something)
@@ -46,6 +46,41 @@ class FactoryExample {
 }
 ```
 
-2. setup VueFactory
+2. register the factory Class:
 
-*TODO*: to be finished
+```
+Vue.factory.register({
+  'example': FactoryExample
+})
+```
+
+3. declare providers that will be injected in the Vue component:
+
+as in a .vue file
+
+```
+<script>
+...
+export default {
+   ...
+   providers: ['example'],
+   ...
+}
+...
+</script>
+```
+
+4. then, you can access the provider in the component using:
+
+```
+this.example.echo("ok") // "ok"
+this.example.prop // get: undefined
+this.example.prop = "changed"
+this.example.prop // get: changed
+```
+
+note that all of the providers are **Singletons**, if you inject the *example* provider other components later, *this.example.prop* will get **changed** value.
+
+## Demo
+
+[Example](https://github.com/ye-will/vue-factory/tree/master/example)
