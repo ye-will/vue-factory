@@ -46,7 +46,7 @@
         var vm = this
         var providers = vm.$options.providers || []
         providers.forEach(function (inj) {
-          if (Proxy && Reflect) {
+          if ((typeof Proxy !== 'undefined') && (typeof Reflect !== 'undefined')) {
             // if detected es6 Proxy/Reflect support, use them to prevent losing 'this'
             // when calling factory functions and protect factory properties
             vm[inj] = new Proxy(plugin.$providers[inj], {
