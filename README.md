@@ -46,6 +46,8 @@ Or with Webpack/Browserify projects, add these lines in your main.js
     }
     ```
 
+    you can use *this.$Vue* in the factory Class to access the The root Vue instance
+
 2.  register the factory Class:
 
     ```
