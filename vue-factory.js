@@ -72,6 +72,7 @@
             })
           } else {
             // otherwise just bind the factory object to the vue component's context
+            console.warn('No Proxy/Reflect support was found, vue-factory was in degraded mode. Take care of *this* pointer & variables of the factory object.')
             vm[inj] = plugin.$providers[inj]
           }
         })

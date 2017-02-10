@@ -54,6 +54,8 @@ new Vue({
     this.props.push(this.example.value)
     try {
       this.example.value = 'try set private'
+      this.props.push('No Proxy/Reflect support was found')
+      this.props.push(this.example.prop)
     }
     catch (err) {
       this.props.push(err.message)
