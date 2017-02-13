@@ -12,18 +12,24 @@ A factory/provider/service extension for vue.js
 
 Install through npm
 
-    npm install vue-factory
+```
+npm install vue-factory
+```
 
 Include vue-factory in <body> after loading Vue and it will automatically hooked
 
-    <script src="/path/to/vue-factory.js'"></script>
+```
+<script src="/path/to/vue-factory.js'"></script>
+```
 
 Or with Webpack/Browserify projects, add these lines in your main.js
 
-    var Vue = require('vue');
-    var VueFactory = require('vue-factory');
+```
+var Vue = require('vue');
+var VueFactory = require('vue-factory');
 
-    Vue.use(VueFactory);
+Vue.use(VueFactory);
+```
 
 ## Useage
 
@@ -46,7 +52,7 @@ Or with Webpack/Browserify projects, add these lines in your main.js
     }
     ```
 
-    you can use *this.$Vue* in the factory Class to access the The root Vue instance
+    you can use *this.$Vue* in the factory Class to access the The global Vue API. For example, when working along with vue-resouce, *this.$Vue.http* is equivalent to *Vue.http*.
 
 2.  register the factory Class:
 
@@ -85,4 +91,5 @@ Or with Webpack/Browserify projects, add these lines in your main.js
 
 ## Demo
 
-[Example](https://github.com/ye-will/vue-factory/tree/master/example)
+Basic Example: [Github](https://github.com/ye-will/vue-factory/tree/master/example)  
+Working with Vuex: [JSFiddle](https://jsfiddle.net/ye_well/dcmxfcz3/)
