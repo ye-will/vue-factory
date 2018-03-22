@@ -1,5 +1,10 @@
 # vue-factory
 
+**NO FARTHER ROADMAP NOW, BECAUSE**
+
+* A similar feature named provide/inject has been invited to vue since 2.2.0
+* To manage data/states, please consider [Vuex](https://github.com/vuejs/vuex) first
+
 A factory/provider/service extension for vue.js
 
 ## Requirements
